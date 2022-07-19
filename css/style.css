@@ -69,8 +69,19 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
 }
 
+div {
+  margin-top: 5px;
+}
+
 .wrapper {
   min-width: 100%;
+}
+
+.conteiner {
+  max-width: 1550px;
+  margin: 30px auto;
+  padding: 0px 30px;
+  border: 1px solid #000;
 }
 
 h1 {
@@ -94,8 +105,26 @@ img {
   max-width: 40%;
 }
 
+.get_Info {
+  display: none;
+}
+
 .red {
   color: rgb(255, 0, 0);
+  font-size: 1.5em;
+  position: relative;
+}
+
+.red:hover .get_Info {
+  width: 300px;
+  position: absolute;
+  top: -20px;
+  left: 0px;
+  display: inline-block;
+  border: 1px solid #000;
+  border-radius: 10px;
+  color: #000;
+  background: #fff;
 }
 
 .blue {
@@ -104,6 +133,8 @@ img {
 
 .green {
   color: rgb(5, 141, 50);
+  font-size: 1.5em;
+  margin-left: 30px;
 }
 
 .orange {
