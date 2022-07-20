@@ -9,13 +9,35 @@
 <body>
   <div class="wrapper">
     <div class="conteiner">
-     <h1>React</h1>
+     <h1>Работа с React (пишу для себя)</h1>
+     <div class="start-react">
+      <h3>Создание React приложения :</h3>
+      <ul>
+        <li> шаг 1: Установил Node.js https://nodejs.org/en/ </li>
+        <li>Шаг 2: Создал ПУСТУ папку, где будут лежать (потом) все файлы, имя не должно начинаться с большой буквы</li>
+        <li>Шаг 3: Запустил VSCode и открыл в нем папку которую создал.</li>
+        <li>Создал терминал и в нем—</li>
+        <li>пункт а: npx — v // ответ должен быть версия npx , иначе он не установлен. нужно ставить Note.js</li>
+        <li>пункт б: npx create-react-app . // в конце точка обозначает что создавать нужно в этой папке, если в папке будут файлы
+        VSC будет ругаться</li>
+        <li>или для имени проекта: npx create-react-app project_name</li>
+        <li>пункт в : npm start //для запуска приложения</li>
+        <li>Откроется страница с анимированным логотипом React</li>
+        <li>Теперь нужно <span class="red">"почистить"<span class="get_Info">
+          <img src="/imj/indexHTML.png" alt="ups">
+          <img src="/imj/App.png" alt="ups">
+          <img src="/imj/indexJS.png" alt="ups">
+        </span></span>  от ненужных файлов папку
+          
+        </li>
+      </ul>
+     </div>
      <div class="stec_texnologi">
       <div>
-        <span class="red">React JS
+        <span class="red">import React from 'react'
           <span class="get_Info">Что бы Реакт работал  </span>
         </span> 
-        <span class="green">реакт приложение</span>
+        <span class="green">Импортируем ядро реакта</span>
       </div>
       <div>
         <span class="red">React bootstrap
@@ -30,8 +52,8 @@
         <span class="green">запросы к серверу</span>
       </div>
       <div>
-        <span class="red">React-router-dom 
-          <span class="get_Info">Что бы React-router-dom в Реакте работал </span>
+        <span class="red">import ReactDOM from 'react-dom/client';
+          <span class="get_Info">Для того что бы вмонтировать компонент в реакт приложение  </span>
         </span>
         <span class="green">навигация</span>
       </div>
@@ -65,7 +87,35 @@
      <div class="hooks">
       <h2>Hooks</h2>
       <div>
-        <span class="red">useState()</span>
+        <span class="red">useState()
+          <span class="get_Info">
+              <h2>Управляемые компоненты -- значение = состояние</h2>
+              <pre>
+              import React, {useState} from "react";  // эта функция проверяет состояние
+             
+              function App() {
+                 const [likes, setLikes] = useState(45);  //собрал фунцию и аргумент
+               
+                function Incerment() {
+                  setLikes(likes + 1)                   //задействовал функцию изменив аргумент
+                }
+                function Decrement() {
+                  setLikes(likes - 1)                    //задействовал функцию изменив аргумент
+                }
+                return (
+                  < div className="App">
+                     < h1> {likes} < />                  //выводим на страницу
+                      < button onClick={Incerment}>Добавить< /button> //на событие вызвал фунуцию
+                      < button onClick={Decrement}>Забрать< /button> //на событие вызвал фунуцию
+                     
+                  < /div>
+                );
+              }
+              
+              export default App;
+                </pre>
+          </span>
+        </span>
         <span class="green">управление состоянием</span>
       </div>
       <div>

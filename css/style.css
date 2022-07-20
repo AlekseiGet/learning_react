@@ -102,7 +102,7 @@ h3 {
 }
 
 img {
-  max-width: 40%;
+  max-width: 800px;
 }
 
 .get_Info {
@@ -116,15 +116,19 @@ img {
 }
 
 .red:hover .get_Info {
-  width: 300px;
+  min-width: 300px;
   position: absolute;
-  top: -20px;
+  bottom: 20px;
   left: 0px;
+  z-index: 1;
   display: inline-block;
   border: 1px solid #000;
   border-radius: 10px;
   color: #000;
   background: #fff;
+}
+.red:hover .get_Info img {
+  display: block;
 }
 
 .blue {
