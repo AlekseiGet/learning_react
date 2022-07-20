@@ -12,25 +12,25 @@
      <h1>Работа с React (пишу для себя)</h1>
      <div class="start-react">
       <h3>Создание React приложения :</h3>
-      <ul>
-        <li> шаг 1: Установил Node.js https://nodejs.org/en/ </li>
+      <ol>
+        <li> Шаг 1: Установил Node.js https://nodejs.org/en/ </li>
         <li>Шаг 2: Создал ПУСТУ папку, где будут лежать (потом) все файлы, имя не должно начинаться с большой буквы</li>
         <li>Шаг 3: Запустил VSCode и открыл в нем папку которую создал.</li>
         <li>Создал терминал и в нем—</li>
-        <li>пункт а: npx — v // ответ должен быть версия npx , иначе он не установлен. нужно ставить Note.js</li>
-        <li>пункт б: npx create-react-app . // в конце точка обозначает что создавать нужно в этой папке, если в папке будут файлы
+        <li>Пункт а: npx — v // ответ должен быть версия npx , иначе он не установлен. нужно ставить Note.js</li>
+        <li>Пункт б: npx create-react-app . // в конце точка обозначает что создавать нужно в этой папке, если в папке будут файлы
         VSC будет ругаться</li>
         <li>или для имени проекта: npx create-react-app project_name</li>
-        <li>пункт в : npm start //для запуска приложения</li>
+        <li>Пункт в : npm start //для запуска приложения</li>
         <li>Откроется страница с анимированным логотипом React</li>
-        <li>Теперь нужно <span class="red">"почистить"<span class="get_Info">
+        <li>Теперь нужно <span class="red">"почистить"<span class="get_Info get_Info_top">
           <img src="/imj/indexHTML.png" alt="ups">
           <img src="/imj/App.png" alt="ups">
           <img src="/imj/indexJS.png" alt="ups">
         </span></span>  от ненужных файлов папку
           
         </li>
-      </ul>
+      </ol>
      </div>
      <div class="stec_texnologi">
       <div>
@@ -123,7 +123,15 @@
         <span class="green">...</span>
       </div>
       <div>
-        <span class="red">useRef()</span>
+        <span class="red">useRef()
+          <span class="get_Info">
+           <h4>С его помощью можно получит доступ к DOM элементу и забрать к примеру "value", а не искать его через "document.querySelector"</h4>
+           <img src="/imj/useRef.png" alt="ups">
+           <h4>Обернуть в функцию</h4>
+           <img src="/imj/ref.png" alt="ups">
+           
+          </span>
+        </span>
         <span class="green">Доступ к DOM элементам</span>
       </div>
       <div>
@@ -138,14 +146,188 @@
         <span class="red">useContext()</span>
         <span class="green">...</span>
       </div>
-
+      <h4>В Классовых компонентах Хуки не работают</h4>
 
      </div>
+     <div class="component">
+      <h2>Компоненты</h2>
+      <h3>Принимают в себя от родителя "пропсы"</h3>
+      <img class="props" src="/imj/Props.png" alt="ups">
+      <h3>Внимательно с кнопкой</h3>
+      <img src="/imj/Button-Props.png" alt="ups">
+      <h3>Props в Input</h3>
+      <img src="/imj/Input-Props.png" alt="ups">
 
+      <h2>Примеры решений</h2>
+      <span class="red">Кнопка
+        <span class="get_Info">
+          <pre>
+            import React, { useState } from "react";
+            
+            const MyButton = () => {
+            const [likes, setLikes] = useState(0)
+            
+            function increment() {
+            setLikes(likes + 1)
+            }
+            function decrement() {
+            setLikes(likes - 1)
+            }
+            return (
+            < div>
+              < h1>{likes}< /h1>
+              < button onClick={increment}>Добавить< /button>
+              < button onClick={decrement}>Забрать< /button>
+            < /div>
+            );
+            };
+            
+            export default MyButton;
+          </pre>
+        </span>
+      </span>,
+      <span class="red"> Инпут
+        <span class="get_Info">
+          <pre>
+
+            <h2>Двухсторонее связывание</h2>
+            import React, { useState } from 'react';
+            
+            const MyInput = () => {
+            const [messeg, setMesseg] = useState('Текст в инпуте')
+            return (
+            < div>
+              < h1>{messeg} < /h1>
+                input type='text' value={messeg} onChange={ event => setMesseg(event.target.value)} />
+            < /div>
+            );
+            };
+            
+            export default MyInput;
+          </pre>
+        </span>
+      </span>,
+      <span class="red"> Разбрал массив объектов 
+        <span class="get_Info">
+          <pre>
+      
+                  <h2>Разбрал массив объектов и передал их в "PROPS"</h2>
+                    const [posts, setPosts] = useState ([
+                    {id: 1, title: "Посты о JS 1", body: 'JS Язык програмирования'},
+                    {id: 2, title: "Посты о JS 2", body: 'JS Язык програмирования'},
+                    {id: 3, title: "Посты о JS 3", body: 'JS Язык програмирования'},
+                    {id: 4, title: "Посты о JS 4", body: 'JS Язык програмирования'},
+                    {id: 5, title: "Посты о JS 5", body: 'JS Язык програмирования'},
+                    {id: 6, title: "Посты о JS 6", body: 'JS Язык програмирования'},
+                    {id: 7, title: "Посты о JS 7", body: 'JS Язык програмирования'},
+                    {id: 8, title: "Посты о JS 8", body: 'JS Язык програмирования'}
+                    ])
+                    
+                    
+                    return (
+                    < div className="App">
+
+                    < div> Список постов< /div> // Или передать сюда через "PROPS" изменяемый заголовок {title}
+                      {posts.map(disassemble =>
+                      < PostItem post={disassemble} key={disassemble.id} />
+                      )}
+                    < /div>
+                    );
+                </pre>
+        </span>
+      </span>
+     </div>
+     <h3>Внимательно !!!</h3>
+        <span class="red"> < MyButton> Создать пост < /MyButton>
+          <span class="get_Info">
+            <pre>
+              const MyButton = (props) => {
+              return (
+              <  div>
+                < button className={classes.myBtn}>
+                  {props.children} //React нужно указать где нужно вставить вложености
+                < /button>
+              <  /div>
+              );
+              };
+                         
+              </pre>
+          </span>
+        </span>--- Невидит вложеность
+     
+        <div>
+          <span  class="red">Двухстороняя связаность Input and Button
+          <span class="get_Info">
+          <pre>
+              const [input, setInput] = useState ('')
+      
+              const addNewPost = (e) => { //здесь буду укправлять содержимым инпута
+              //form заставляет обновлятся при нажатии на кнопку
+              e.preventDefault() //Запрещаю обновлятся при нажатии на кнопку
+              
+              }
+                
+              return (
+              < div className="App">
+                < form>
+                  <'MyInput type="text" placeholder="Название поста" value={input} //присваиваю значение управляемого компонента
+                    onChange={e=> setInput(e.target.value)}//переписываю значение управляемого компонента
+                    />
+                    < 'MyInput type="text" placeholder="описание поста" />
+                    < MyButton onClick={addNewPost}>Создать пост< /MyButton>
+                < /form>
+              
+              
+              < /div>
+              );
+              }
+          </pre>
+          </span>
+          </span>
+        </div>
+       
+        <div>
+          <h2>Создание и добавление новых "ПОСТОВ"</h2>
+          <span class="red">Посмотреть
+            <span class="get_Info">    
+             <pre>const [posts, setPosts] = useState ([
+            {id: 1, title: "Посты о JS 1", body: 'JS Язык програмирования'},
+            {id: 2, ti...
+
+            const [nameInput, setNameInput] = useState (''); //для первого инпута
+            const [messegInput, setMessegInput] = useState(''); //для второго инпута
+            
+            
+            const addNewPost = (e) => {
+            e.preventDefault() //чтобы не перезагружаля
+            const newPost = { //Создал новый пост
+            id: Date.now(), // время св мс.
+            title: nameInput, //из первого инпута
+            body: messegInput // из второго инпута
+            };
+            setPosts([...posts, newPost]) //в новый массив разворачиваем старый массив и потом добавляем новый пост
+            };
+            
+            
+            return (
+            < div className="App">
+              < form>
+                <'' MyInput //первый инпут type="text" placeholder="Название поста" value={nameInput} onChange={e=>
+                  setNameInput(e.target.value)}//функция изменяющая значение инпута
+                  />
+            
+                  <'' MyInput //второй инпут type="text" placeholder="описание поста" value={messegInput} onChange={e=>
+                    setMessegInput(e.target.value)}//функция изменяющая значение инпута
+                    />
+                    < MyButton onClick={addNewPost}>Создать пост< /MyButton>
+              < /form>
+            
+              < PoctList title="Посты про JS" gosts={posts} />
+            < /div></pre> 
+           </span>
+          </span>
+        </div>
    </div>
-  </div>
- 
-  
-  
+  </div> 
 </body>
 </html>

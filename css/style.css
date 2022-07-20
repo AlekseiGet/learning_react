@@ -105,6 +105,17 @@ img {
   max-width: 800px;
 }
 
+img:active {
+  transform: scale(1.4, 1.4) translateX(70px);
+}
+
+.start-react {
+  font-size: 1.5em;
+}
+.start-react li::first-letter {
+  color: rgb(30, 255, 0);
+}
+
 .get_Info {
   display: none;
 }
@@ -127,8 +138,8 @@ img {
   color: #000;
   background: #fff;
 }
-.red:hover .get_Info img {
-  display: block;
+.red:hover .get_Info_top {
+  top: -290px;
 }
 
 .blue {

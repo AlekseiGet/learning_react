@@ -37,6 +37,19 @@ h2{
 img{
    max-width: 800px;
 }
+img:active{
+    transform: scale(1.4, 1.4) translateX(70px);
+  
+}
+.props{
+   
+}
+.start-react{
+  font-size: 1.5em;
+  li::first-letter{
+    color: rgb(30, 255, 0);
+  }
+}
 
 .get_Info{
     
@@ -61,13 +74,13 @@ img{
         border: 1px solid#000;
         border-radius: 10px;
         color: #000;
-        background: #fff;
-        img{
-            display: block;
-           // width: 500px;
-            
-        }
-} 
+        background: #fff;      
+       } 
+       .get_Info_top{
+        top: -290px;
+      
+       
+       }
 } 
 
 .blue {
