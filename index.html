@@ -254,7 +254,6 @@
               </pre>
           </span>
         </span>--- Невидит вложеность
-     
         <div>
           <span  class="red">Двухстороняя связаность Input and Button
           <span class="get_Info">
@@ -284,49 +283,125 @@
           </pre>
           </span>
           </span>
-        </div>
-       
+        </div>    
         <div>
           <h2>Создание и добавление новых "ПОСТОВ"</h2>
           <span class="red">Посмотреть
             <span class="get_Info">    
-             <pre>const [posts, setPosts] = useState ([
-            {id: 1, title: "Посты о JS 1", body: 'JS Язык програмирования'},
-            {id: 2, ti...
-
-            const [nameInput, setNameInput] = useState (''); //для первого инпута
-            const [messegInput, setMessegInput] = useState(''); //для второго инпута
-            
-            
-            const addNewPost = (e) => {
-            e.preventDefault() //чтобы не перезагружаля
-            const newPost = { //Создал новый пост
-            id: Date.now(), // время св мс.
-            title: nameInput, //из первого инпута
-            body: messegInput // из второго инпута
-            };
-            setPosts([...posts, newPost]) //в новый массив разворачиваем старый массив и потом добавляем новый пост
-            };
-            
-            
-            return (
-            < div className="App">
-              < form>
-                <'' MyInput //первый инпут type="text" placeholder="Название поста" value={nameInput} onChange={e=>
-                  setNameInput(e.target.value)}//функция изменяющая значение инпута
-                  />
-            
-                  <'' MyInput //второй инпут type="text" placeholder="описание поста" value={messegInput} onChange={e=>
-                    setMessegInput(e.target.value)}//функция изменяющая значение инпута
+             <pre>
+              const [forInput, setForInput] = useState( {nameInput: '', messegInput: "" } )//для первого инпута, для второго инпута
+              
+              const addNewPost = (e) => {
+              e.preventDefault() //чтобы не перезагружаля
+              const newPost = { //Создал новый пост
+              id: Date.now(), // время св мс.
+              title: forInput.nameInput, //из первого инпута
+              body: forInput.messegInput // из второго инпута
+              };
+              setPosts([...posts, newPost]) //в новый массив разворачиваем старый массив и потом добавляем новый пост
+              setForInput({nameInput: '', messegInput: ""}); // обнуляю состояние строки после ввода
+              
+              };
+              
+              
+              return (
+              < div className="App">
+                < form>
+                  <'' MyInput //первый инпут
+                     type="text"
+                     placeholder="Название поста"
+                     value={forInput.nameInput}
+                     onChange={e=> setForInput({...forInput, nameInput: e.target.value} )}//функция изменяющая значение инпута
                     />
-                    < MyButton onClick={addNewPost}>Создать пост< /MyButton>
-              < /form>
-            
-              < PoctList title="Посты про JS" gosts={posts} />
-            < /div></pre> 
+              
+                    <'' MyInput //второй инпут
+                       type="text"
+                       placeholder="описание поста"
+                       value={forInput.messegInput}
+                       onChange={e=> setForInput({...forInput, messegInput: e.target.value} )}//функция изменяющая значение инпута
+                      />
+                      < MyButton onClick={addNewPost}>Создать пост< /MyButton>
+                </form>
+             </pre> 
            </span>
           </span>
         </div>
+        <h2> CALLBACK</h2>
+        <div class="callbak">  
+          <img src="/imj/Props_Callback.png" alt="ups">
+          <span>
+            <pre>
+              import React from 'react';
+              
+              const PostForm = () => {
+              const [forInput, setForInput] = useState({ nameInput: '', messegInput: "" })//для первого инпута, для второго инпута
+              
+              const addNewPost = (e) => {
+              e.preventDefault() //чтобы не перезагружалcя
+              const newPost = { // <span class="red"> Создал новый пост и его нужно передать в верх к родителю</span>
+              id: Date.now(), // время св мс.
+              title: forInput.nameInput, //из первого инпута
+              body: forInput.messegInput // из второго инпута
+              };
+              // нет доступа к setPosts
+              //setPosts([...posts, newPost]) //в новый массив разворачиваем старый массив и потом добавляем новый пост
+              setForInput({ nameInput: '', messegInput: "" }); // обнуляю состояние строки после ввода
+              
+              };
+              
+              return (
+              < div>
+                < form>
+                  < 'MyInput //первый инпут type="te....
+            </pre>
+          </span>
+
+          <img src="/imj/Callback-Post.png" alt="ups">
+     
+           <h3> Передаю из родителя в компонент функцию обратного вызова :</h3>
+           <pre>
+            const createPost =(newPost) => {<span class="green">//на вход буду ожидать новый пост</span>
+            setPosts([...posts, newPost])<span class="green">//в новый массив разворачиваем старый массив и потом добавляем новый пост</span>
+            }
+         
+            
+            return (
+            < div className="App">
+            
+            
+              < PostForm create={createPost} /><span class="green"> {/* Передаю в компонент функцию обратного вызова */ }</span>
+              < PoctList title="Посты про JS" gosts={posts} />
+            < /div>
+            );
+            }
+            
+            export default App;
+           </pre>
+            
+           <h3>Получил эту функцию через Props. Вызвал и в её параметры передал что нужно вернуть</h3>
+           <pre>
+            const PostForm = ({ create }) => { <span class="green">Получил эту функцию через Props</span>
+            const [forInput, setForInput] = useState({ nameInput: '', messegInput: "" })//для первого инпута, для второго инпута
+            
+            const addNewPost = (e) => {
+            e.preventDefault()
+            const newPost = {
+            id: Date.now(),
+            title: forInput.nameInput,
+            body: forInput.messegInput
+            };
+            create(newPost); <span class="green">Вызвал и в её параметры передал что нужно вернуть</span>
+            setForInput({ nameInput: '', messegInput: "" });
+            
+            };
+            
+            return (
+            < di...
+           </pre>
+        </div>
+
+
+
    </div>
   </div> 
 </body>
