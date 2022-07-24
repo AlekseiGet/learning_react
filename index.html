@@ -135,7 +135,11 @@
         <span class="green">Доступ к DOM элементам</span>
       </div>
       <div>
-        <span class="red">useMemo(callback, deps)</span>
+        <span class="red">useMemo(callback, deps)<span class="get_Info">
+          <span>callback- должен возвращать массив обьектов 
+            В [массив зависимостей] можно передавать переменные , поля объекта - то при изменении чего callback будет возвращаться
+          </span>
+        </span></span>
         <span class="green">(функция обратного вызова, [массив зависимостей])</span>
       </div>
       <div>
@@ -159,6 +163,15 @@
       <img src="imj/Input-Props.png" alt="ups">
 
       <h2>Примеры решений</h2>
+      <span class="red">Добавление класса - двух
+        <span class="get_Info">
+          <pre>import cl from "./MyModal.module.css"
+          
+          const MyModal = ({children}) => {
+          return (
+          < div className={[cl.myModal, cl.active].join('' ) }>
+            < div className={cl.myModalContent}></pre></span></span>
+
       <span class="red">Кнопка
         <span class="get_Info">
           <pre>
@@ -402,6 +415,102 @@
           <h3>Callback на два уровня</h3>         
           <img src="imj/Dubl_Callback.png" alt="ups">
          </div>
+        </div>
+        <div class="elseIf">
+          <span class="red">Условная отрисовка
+            <span class="get_Info">
+              <pre>
+                          {posts.length != 0
+                          ?
+                          < PoctList remove={removePost} title="Посты про JS" gosts={posts} />
+                          : < h1 style={{textAlign: "center" }}> Посты не найдены< />
+                          }
+                          <h4>Если posts пустой - будет выводится теkcт</h4>
+                        </pre>
+            </span>
+          </span>
+          
+          <pre>
+            {posts.length != 0
+            ?
+            < PoctList remove={removePost} title="Посты про JS" gosts={posts} />
+            : < h1 style={{textAlign: "center" }}> Посты не найдены< />
+            }
+            <h4>Если posts пустой - будет выводится теkcт</h4>
+          </pre>
+        </div>
+
+        <div class="sort">
+          <h3>Сортировка</h3>
+          <pre>
+            const [posts, setPosts] = useState ([
+            {id: 1, title: "Посты о JS a", body: 'JS Язык програмирования е'},
+            {id: 2, title: "Посты о JS b", body: 'JS Язык програмирования д'},
+            {id: 3, title: "Посты о JS c", body: 'JS Язык програмирования г'},
+            {id: 4, title: "Посты о JS d", body: 'JS Язык програмирования в'},
+            {id: 5, title: "Посты о JS f", body: 'JS Язык програмирования б'},
+            {id: 6, title: "Посты о JS g", body: 'JS Язык програмирования а'}
+            
+            ]);
+            const [selectedSort, setSelectedSort ] = useState('');
+            
+            const {<span class="red">selectedSort<span class="get_Info">В функцию параметром получаю SORT вернувшийся из</span></span> = (sort) => {
+            setSelectedSort(sort);
+          <span class="red"> setPosts<span class="get_Info">Вызываю функецию изменяющую массив с постами</span></span>(<span class="red">[...posts]<span class="get_Info">Не изменяю массив а делаю новый используя  "localeCompare"</span></span>.sort((a,b) => a[sort].localeCompare(b[sort]) ) )
+            };
+            
+            const createPost =(newPost) => { //callbeck для создания
+            setPosts([...posts, newPost]);
+            }
+            const removePost = (post) => { //callbeck для удаления
+            setPosts(posts.filter(p => p.id !== post.id ))//сравниваю id введёного и из массива
+            };
+            
+            
+            return (
+            < div className="App">
+              < PostForm create={createPost} />
+              < MySelect value={<span class="red">selectedSort<span class="get_Info">Передаю функцию</span></span>}
+               onChange={sortPosts} defoltValue="Сортировка по:" optyons={[ {value:"title", name:"По
+                названию"}, {value:"body", name:"По описанию"} ]} />
+              < div>
+          </pre>
+        </div>
+        <div class="query">
+          <h3>Поиск...</h3>
+          <pre>const [selectedSort, setSelectedSort ] = useState('');
+          
+          const [searchQuery, setSearchQuery ] = useState('');
+          
+          function getQuerySortedPost() { <span class="green">Если не пустое место ввода то возвращает отсортированый массив</span>
+          if (selectedSort) {
+          return [...posts].sort((a,b) => a[selectedSort].localeCompare(b[selectedSort]) )
+          }
+          return posts;
+          }
+          
+          const querySortedPost = getQuerySortedPost() ; 
+          
+          const sortPosts = (sort) => {
+          setSelectedSort(sort);
+          
+          };
+          
+          const createPost =(newPost) => {
+          setPosts([...posts, newPost]);
+          }
+          
+          const removePost = (post) => {
+          setPosts(posts.filter(p => p.id !== post.id ))
+          };
+ 
+          return (
+          < div className="App">
+            < PostForm create={createPost} />
+            <'' MyInput value={searchQuery} onChange={e=> setSearchQuery(e.target.value)}
+              placeholder='Поиск...'
+              />
+              < PoctList remove={removePost} title="Посты про JS" gosts={querySortedPost} /></pre>
         </div>
 
 
