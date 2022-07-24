@@ -512,6 +512,38 @@
               />
               < PoctList remove={removePost} title="Посты про JS" gosts={querySortedPost} /></pre>
         </div>
+        <div class="modal_window">
+          <h2>Модальное окно</h2>
+          <div class="parent">
+          <h2> В App.js</h2>
+          <pre>
+            const [modal, setModal] = useState(false);
+            const createPost =(newPost) => {
+            setPosts([...posts, newPost]);
+            setModal(false) }
+            ...
+            < MyModal visibel={modal} setVisibel={setModal}>
+
+          </pre>
+        </div>
+        <div class="children">
+          <h2> B MyModal.jsx</h2>
+          <pre>
+          const MyModal = ({ children, visibel, setVisibel }) => {
+          {<span class="red">const rootClasses = [cl.myModal];
+            if (visibel) {
+            rootClasses.push(cl.active);
+            }<span class="get_Info"> Добавляет дополнительный class name при visibel = true</span></span>
+          return (
+           div className={<span class="red">rootClasses.join(' ')<span class="get_Info">джойнит классы в строку через
+              пробел</span></span>} onClick={() => setVisibel(false) } >
+             div className={cl.myModalContent} onClick={(e)=><span class="red"> e.stopPropagation()<span
+                  class="get_Info">останавливает действие в области этого класса</span></span>} >
+              {children}
+            .....>
+          </pre>
+        </div>
+        </div>
 
 
 
