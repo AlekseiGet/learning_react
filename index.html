@@ -53,7 +53,9 @@
       </div>
       <div>
         <span class="red">import ReactDOM from 'react-dom/client';
-          <span class="get_Info">Для того что бы вмонтировать компонент в реакт приложение  </span>
+          <span class="get_Info">Для того что бы вмонтировать компонент в реакт приложение  
+            <p>npm install react-router-dom</p>
+          </span>
         </span>
         <span class="green">навигация</span>
       </div>
@@ -119,7 +121,24 @@
         <span class="green">управление состоянием</span>
       </div>
       <div>
-        <span class="red">useEffect()</span>
+        <span class="red">useEffect(callback, deps)<span class="get_Info get_Info_top">
+          Похож на useMemo
+          <img src="imj/useEffectStart.png" alt="ups">
+          <p class="green">Отработает один раз, при создании - Можно отследить стадию монтирования</p>
+          <img src="imj/useEffectLive.png" alt="ups">
+          <p class="green">Можно добавить какие то зависимости в массив, каждый раз при изменении зависимости будет отрабатывать CALLBACK</p>
+          <img src="imj/useEffectEnd.png" alt="ups">
+          <p class="green">В этот момент нужно делать всякие очистки, удалять зависимости ....</p>
+          <h2>Пример</h2>
+          <pre>useEffect(() => {
+          fetchPosts()
+          }, [] )
+          
+          async function fetchPosts() {
+          const response = await axios.get("https://jsonplaceholder.typicode.com/posts")
+          setPosts(response.data)
+          }</pre>
+        </span></span>
         <span class="green">...</span>
       </div>
       <div>
@@ -151,7 +170,6 @@
         <span class="green">...</span>
       </div>
       <h4>В Классовых компонентах Хуки не работают</h4>
-
      </div>
      <div class="component">
       <h2>Компоненты</h2>
@@ -220,7 +238,7 @@
           </pre>
         </span>
       </span>,
-      <span class="red"> Разбрал массив объектов 
+      <span class="red"> Разбрал массив объектов,   
         <span class="get_Info">
           <pre>
       
@@ -248,8 +266,16 @@
                     );
                 </pre>
         </span>
+      </span>  
+      <span class="red">   className 
+        <span class="get_Info">
+          <pre><h3>Если элемент итерации функции MAP равен состоянию то добавляю одни стили, в обратном другие </h3>
+          className={page === p ? "page_current" : "page_item"}</pre>
+        </span>
       </span>
+
      </div>
+     <div class="danger">
      <h3>Внимательно !!!</h3>
         <span class="red"> < MyButton> Создать пост < /MyButton>
           <span class="get_Info">
@@ -267,6 +293,7 @@
               </pre>
           </span>
         </span>--- Невидит вложеность
+        </div>
         <div>
           <span  class="red">Двухстороняя связаность Input and Button
           <span class="get_Info">
@@ -544,8 +571,68 @@
           </pre>
         </div>
         </div>
-
-
+        <div class="animation">
+          <h2>Добавление анимации</h2>
+          Командная строка--<h3> npm install react-transition-group --save</h3>
+          <h3>Ссылки</h3>
+          <span>https://reactjs.org/docs/animation.html</span>
+          <span>https://reactcommunity.org/react-transition-group/</span>
+        
+        <span class="red">Весь блок обернуть в  TransitionGroup<span class="get_Info">
+          <pre>< TransitionGroup>
+            {gosts.map((disassemble, index )=>      
+              < PostItem remove={remove} number={index + 1} post={disassemble} />    
+            )}
+          < /TransitionGroup>></pre>
+        </span></span>
+        <div>
+          <span class="red">Внутри что буду анимировать обернуть в CSSTransition<span class="get_Info">
+              <pre>TransitionGroup>
+              {gosts.map((disassemble, index )=>
+              < CSSTransition key={disassemble.id} timeout={500} classNames="disassemble">
+                < PostItem remove={remove} number={index + 1} post={disassemble} />
+              < /CSSTransition>
+              )}
+              /TransitionGroup>
+              </TransitionGroup</pre>
+            </span></span>
+        </div>
+        <div>
+          CSSTransition key={disassemble.id} timeout={500} classNames="<span class="red">disassemble<span class="get_Info"> <h3>Имя класса будет использоваться в CSS особым образом</h3>
+          <pre>Плавно исчезает
+          .disassemble-enter {
+          opacity: 0;
+          }
+          
+          .disassemble-enter-active {
+          opacity: 1;
+          transition: opacity 500ms ease-in;
+          }
+          
+          .disassemble-exit {
+          opacity: 1;
+          }
+          
+          .disassemble-exit-active {
+          opacity: 0.01;
+          transition: opacity 500ms ease-in;
+          }</pre>
+          </span></span>">
+        </div>
+        </div>
+        <div class="axios">
+          <h2>Для работы с сервером нужна библиотека AXIOS</h2>
+          <span>В командной строке ввести <p class="green">npm i axios</p></span>
+          <div class="liveCycle">
+            <h3>Жизненый цикл </h3>
+              <img src="imj/LiveCycle.png" alt="ups">
+          </div>
+          <pre>async function fetchPosts() {
+          const response = await axios.get("https://jsonplaceholder.typicode.com/posts")
+          console.log(response); // полностью массив
+          console.log(response.data); // массив постов
+          }</pre>
+        </div>
 
    </div>
   </div> 

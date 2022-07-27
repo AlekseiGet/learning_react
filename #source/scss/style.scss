@@ -67,20 +67,19 @@ img:active{
 .red:hover{
     .get_Info{
         min-width: 300px;
+        height: fit-content; 
         position: absolute;
         bottom: 20px;
         left: 0px;
         z-index: 1;
         display: inline-block;
-        border: 1px solid#000;
+        border: 2px solid red;
         border-radius: 10px;
         color: #000;
         background: #fff;      
        } 
        .get_Info_top{
-        top: -290px;
-      
-       
+        top: -290px;   
        }
 } 
 
