@@ -57,6 +57,7 @@
             <p>npm install react-router-dom</p>
           </span>
         </span>
+        <a href="#router">навигация</a>
         <span class="green">навигация</span>
       </div>
       <div>
@@ -169,6 +170,42 @@
         <span class="red">useContext()</span>
         <span class="green">...</span>
       </div>
+      <div>
+        <span class="red">useNavigate ---для динамической навигации
+          <span class="get_Info"><pre>
+            const router = useNavigate();// для динамической навигации
+            
+            return (
+             div>
+               div className="post">
+                 div className="post_content">
+                   strong> {props.post.id} {props.post.title} /strong>
+                   div>
+                    {props.post.body}
+                   /div>
+                 /div>
+                 div className="post_btns">
+                   MyButton onClick={()=> router(`/posts/${props.post.id}`)} >
+                    Информация  /MyButton>
+          </pre></span></span></div>
+      <div>
+      <span class="red">useParams()
+        <span class="get_Info">
+          <pre>
+              const params = useParams();
+              
+              return (
+            h1>Страница поста с ID - {params.id} /h1>
+          </pre></span></span></div>
+
+          <div>
+            <span class="red">useContext(context)
+              <span class="get_Info">
+                <h3>Глобальное хранилище</h3>
+              <img src="/imj/useContext.png" alt="">
+              </span></span>
+          </div>
+
       <h4>В Классовых компонентах Хуки не работают</h4>
      </div>
      <div class="component">
@@ -633,6 +670,55 @@
           console.log(response.data); // массив постов
           }</pre>
         </div>
+         <div id="router" class="router">
+          <h2>Навигация между страницами без перезагрузки,</h2>
+          <pre>  div className="navbar">
+            < div className="navbar">
+              < div className="navbar_link">
+                < Link to="/about">About< /Link>
+                < Link to="/posts">Посты< /Link>
+              < /div>
+             /div></pre>
+          <span class="red">эллементы навигации
+          <div class="get_Info">
+          <pre>
+      < Routes>
+         < Route
+             path="/about" 
+             element={< About />}
+             key= "1"
+            />
+       < /Routes>
+       < Routes>
+          < Route 
+             path="/posts" 
+             element={< Posts />}
+             key= "2"
+            />
+       < /Routes></pre>
+</div> </span>
+          <span class="red">Если такого адресса нет !!,
+            <div class="get_Info">
+              <pre>
+                  < Route 
+                  path="*" 
+                  element={< Navigate to="/error" replace />}
+                  />
+              </pre></div></span>
+              <div>
+                <span class="red">Динамическая навигация,
+                  <div class="get_Info"><pre> 
+                < Route (exact чтобы роутер не путал с обычным posts)
+                    exact path="/posts" 
+                    element={< Posts />}
+                     key="2" />
+                 < Route   (id перемещение по id)
+                    exact path="/posts/:id" element={<
+                    PostIdPages />}
+                    key="1"/></pre></div></span>
+              </div>
+
+         </div>
 
    </div>
   </div> 
